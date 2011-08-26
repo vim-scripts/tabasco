@@ -1,0 +1,48 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3713
+
+----> I don't recommend this plugin anymore! See Final note.
+
+* Overview
+
+Plugin tabasco.vim provides two commands for Vim tabs loading/saving:
+
+:Tabssave [name]
+
+Saves a list of tabs to _vim_tabasco.name file for current user (or .vim_tabasco.name for mac/unix). If name is not specified the name "default" is used.
+
+:Tabsload [name]
+
+Removes active tabs and loads new tabs from list in _vim_tabasco.name file like in :Tabssave.
+Additionally it creates autocommand which saves list of tabs before quitting Vim (explicit using :Tabssave is not necessary after loading).
+
+
+* Additional information
+
+The aim of this plugin is to provide functionality similar to Notepad++ (and other editors) which loads/saves tabs automatically after opening/closing editor respectively. To achieve this create following shortcut[s] (for Windows and gVim):
+
+"C:\Program Files\Vim\vim73\gvim.exe" -c "Tabsload"
+or:
+"C:\Program Files\Vim\vim73\gvim.exe" -c "Tabsload name"
+
+Using second option allows to keep a couple of shortcuts with a separate lists of tabs to work with.
+
+
+* Limitations
+
+For now many buffers in one tab are expanded to separate tabs on load.
+Tab name should be full file path or any kind of accessible path, if it just a file name and Vim is run from a different directory it will not load it properly.
+
+
+* Notes
+
+Plugin was tested only with Vim 7.3 and Windows7 / 64bit.
+Feel free to leave me suggestions and corrections or to make your own modifications.
+I would like to thank Yegappan Lakshmanan for MRU plugin I was analyzing in order to learn how to write vim scripts.
+
+
+* Final note
+
+I just found :mksession and :runtime do the same better. Following shortcuts can be used:
+"C:\Program Files\Vim\vim73\gvim.exe" -c "runtime Session.vim"  -c "autocmd VimLeave * exe 'mksession!'"
+or
+"C:\Program Files\Vim\vim73\gvim.exe" -c "runtime sessionname.vim"  -c "autocmd VimLeave * exe 'mksession! sessionname.vim'"
